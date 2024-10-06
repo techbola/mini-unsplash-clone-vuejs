@@ -6,7 +6,7 @@
     @mouseleave="isHovered = false"
   >
     <div class="image-container">
-      <img :src="image.urls.small" :alt="image.alt_description" />
+      <img :src="image.urls.regular" :alt="image.alt_description" />
 
       <div class="info-section">
         <span class="author-name">{{ image.user.name }}</span>
@@ -59,6 +59,12 @@ const isHovered = ref(false);
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.4);
     z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  .overlay:hover {
+    opacity: 1;
   }
 }
 
@@ -76,11 +82,11 @@ const isHovered = ref(false);
 .author-name {
   font-size: 14px;
   font-weight: bold;
-  color: #ffffff;
+  color: var(--white);
 }
 
 .location {
   font-size: 12px;
-  color: #dddddd;
+  color: var(--light-grey);
 }
 </style>

@@ -33,12 +33,14 @@
       </div>
     </div>
 
-    <ImageModal
-      v-if="showModal"
-      :image="selectedImage"
-      :show="showModal"
-      @close="closeModal"
-    />
+    <transition name="modal-fade">
+      <ImageModal
+        v-if="showModal"
+        :image="selectedImage"
+        :show="showModal"
+        @close="closeModal"
+      />
+    </transition>
   </div>
 </template>
 
@@ -107,7 +109,7 @@ onMounted(() => {
 
 <style scoped>
 .search-section {
-  background-color: #f5f5f5;
+  background-color: var(--grey);
   height: 250px;
   display: flex;
   justify-content: center;
@@ -122,7 +124,7 @@ onMounted(() => {
   height: 50px;
   padding: 10px;
   font-size: 16px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--light-grey);
   border-radius: 6px;
 }
 
@@ -133,7 +135,7 @@ onMounted(() => {
 .no-results {
   text-align: center;
   font-size: 18px;
-  color: #777;
+  color: var(--text-blue);
 }
 
 .image-grid {

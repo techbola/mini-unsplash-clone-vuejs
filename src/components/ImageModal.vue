@@ -85,19 +85,19 @@ onBeforeUnmount(() => {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background-color: #ffffff;
+  background-color: var(--white);
   margin-top: -6px;
 }
 
 .author-name {
   font-size: 14px;
   font-weight: bold;
-  color: #1c1c1c;
+  color: var(--dark-grey);
 }
 
 .location {
   font-size: 12px;
-  color: #bbbbbb;
+  color: var(--light-grey3);
 }
 
 .close-button {
@@ -106,8 +106,32 @@ onBeforeUnmount(() => {
   right: 50px;
   background: transparent;
   border: none;
-  color: white;
+  color: var(--white);
   font-size: 24px;
   cursor: pointer;
+}
+
+.modal-fade-enter-active,
+.modal-fade-leave-active {
+  transition: opacity 0.5s ease-in-out;
+}
+
+.modal-fade-enter,
+.modal-fade-leave-to {
+  opacity: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .modal-content {
+    width: calc(100% - 40px);
+  }
+
+  .image-container {
+    height: auto;
+  }
+
+  .image-container img {
+    min-height: 150px;
+  }
 }
 </style>

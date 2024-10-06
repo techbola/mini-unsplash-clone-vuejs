@@ -10,13 +10,13 @@
   .image-placeholder {
     width: 100%;
     height: 200px;
-    background-color: #ddd;
+    background-color: var(--light-grey);
     margin-bottom: 10px;
   }
   .text-placeholder {
     width: 60%;
     height: 20px;
-    background-color: #ccc;
+    background-color: var(--light-grey2);
   }
 }
 </style>
