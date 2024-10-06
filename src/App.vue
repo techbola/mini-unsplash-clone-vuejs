@@ -1,14 +1,20 @@
 <template>
   <div id="app">
     <div class="search-section">
-      <input
-        v-model="query"
-        placeholder="Search Unsplash"
-        @keyup.enter="searchImages"
-        class="search-input"
-      />
-      <div v-if="searched" class="search-result">
-        <h2>Search results for "{{ searchedQuery }}"</h2>
+      <div class="search-section-container">
+        <input
+          v-if="!searched"
+          v-model="query"
+          placeholder="Search Unsplash"
+          @keyup.enter="searchImages"
+          class="search-input"
+        />
+        <div v-else class="search-result">
+          <h2>
+            Search results for
+            <span class="search-result-query">"{{ query }}"</span>
+          </h2>
+        </div>
       </div>
     </div>
 
@@ -53,7 +59,6 @@ import SkeletonLoader from "./components/SkeletonLoader.vue";
 
 const images = ref([]);
 const query = ref("");
-const searchedQuery = ref("");
 const loading = ref(false);
 const searched = ref(false);
 const showModal = ref(false);
@@ -66,7 +71,6 @@ const fetchAfricanImages = async (query_param) => {
     images.value = response.data.results;
   } finally {
     loading.value = false;
-    query.value = "";
   }
 };
 
@@ -80,7 +84,6 @@ const searchImages = async () => {
 
   loading.value = true;
   searched.value = true;
-  searchedQuery.value = query.value;
   fetchAfricanImages(query.value);
 };
 
@@ -108,19 +111,23 @@ onMounted(() => {
 </script>
 
 <style scoped>
+.search-section-container {
+  max-width: 1224px;
+  width: 90%;
+  margin: 0 auto;
+}
 .search-section {
   background-color: var(--grey);
   height: 250px;
   display: flex;
   justify-content: center;
-  align-items: center;
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
 .search-input {
-  min-width: 70%;
+  min-width: 100%;
   height: 50px;
   padding: 10px;
   font-size: 16px;
@@ -128,8 +135,8 @@ onMounted(() => {
   border-radius: 6px;
 }
 
-.search-result {
-  text-align: center;
+.search-result-query {
+  color: var(--text-blue2);
 }
 
 .no-results {
@@ -155,5 +162,11 @@ onMounted(() => {
 
 .image-grid-row .image-card:last-child {
   margin-bottom: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .search-section {
+    height: 200px;
+  }
 }
 </style>
